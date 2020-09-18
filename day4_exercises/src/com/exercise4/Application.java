@@ -1,5 +1,8 @@
 package com.exercise4;
 
+import java.util.NoSuchElementException;
+
+import com.exercise4.exceptions.MyCustomException;
 import com.training.exceptions.RangeCheckException;
 
 public class Application {
@@ -7,20 +10,54 @@ public class Application {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 
+		Book book1 = new Book(100,"Science","James",120);
+		Book book2 = new Book(101,"Maths","Robert",200);
+		
 		BookService service = new BookService();
 		
-		Book book1 = new Book(100,"Science","James",200);
-		Book book2 = new Book(101,"Maths","Robert",300);
+		service.addBook(book1, 0);
+		service.addBook(book2, 1);
 		
-		service.addBook(book1,0);
-		service.addBook(book2,1);
 		
-		//System.out.println(service.getBook(100).getBookName());
+		try
+		{
+			book1.setBookName(null);
+		} 
+		catch (MyCustomException e)
+		{
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 		
-		//service.getBook(3);
-		//service.getBook(100).setBookName(null);
-		Book book3 = new Book(102,null,"Ron",120);
-		//book1.setPrice(600);
+		
+		try
+		{
+			Book book3 = new Book(102,"English","Jon",8000);
+		} 
+		catch (RangeCheckException e)
+		{
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} 
+		catch (MyCustomException e)
+		{
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+		System.out.println("All books: ");
+		System.out.println(service.getAll());
+		
+		try
+		{
+			System.out.println(service.getBook(300));
+		}
+		catch(NoSuchElementException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		
 		
 	}
 

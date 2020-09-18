@@ -26,13 +26,17 @@ public class Book {
 		
 		try
 		{
+			if (bookName==null)
+			{
+				throw new NullPointerException();
+			}
 			
-			this.bookName=bookName;
 		}
 		catch(NullPointerException e)
 		{
 			throw new MyCustomException("book name cannot be null",e);
 		}
+		this.bookName=bookName;
 	}
 	
 	public String getAuthor() {
@@ -85,16 +89,13 @@ public class Book {
 			{
 				throw new NullPointerException();
 			}
-			else
-			{
-				this.bookName=bookName;
-			}
 		}
 		catch(NullPointerException e)
 		{
 			throw new MyCustomException("book name cannot be null",e);
+			
 		}
-		
+		this.bookName=bookName;
 		this.author = author;
 		
 		if(price<100 || price>500)
