@@ -27,8 +27,24 @@ public class FilesExample {
 		}
 	}
 	
-	public void readFromFile()
+	public void readFromFile(File file)
 	{
+		String line=null;
+		try {
+			BufferedReader reader=new BufferedReader(new FileReader(file));
+			while ((line = reader.readLine()) != null) 
+			{
+
+				System.out.println(line);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 }
