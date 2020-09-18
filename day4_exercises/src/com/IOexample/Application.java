@@ -10,7 +10,9 @@ public class Application {
 		// TODO Auto-generated method stub
 		Customer ram=new Customer("123","ram",2323,"abc@xyz.com");
 		FilesExample service = new FilesExample();
-		service.writeToFile(new File("customer.txt"), ram);
+		File file=new File("customer.txt");
+		//service.writeToFile(file, ram);
+		service.readFromFile(file);
 
 	}
 
